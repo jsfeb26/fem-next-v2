@@ -1,7 +1,7 @@
 import clsx from "clsx";
 
 export interface Props extends React.HTMLAttributes<HTMLInputElement> {
-  className: string;
+  className?: string;
 }
 
 export const Input = ({ className, ...props }: Props) => {
@@ -9,7 +9,7 @@ export const Input = ({ className, ...props }: Props) => {
     <input
       className={clsx(
         "border-solid border-gray border-2 px-6 py-2 text-lg rounded-3xl w-full",
-        className
+        Boolean(className) && className
       )}
       {...props}
     />
