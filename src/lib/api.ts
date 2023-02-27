@@ -1,4 +1,12 @@
-const fetcher = async ({ url, method, body, json = true }) => {
+import { db } from "./db";
+interface FetcherArgs {
+  url: string;
+  method: string;
+  body: string;
+  json?: boolean;
+}
+
+const fetcher = async ({ url, method, body, json = true }: FetcherArgs) => {
   const res = await fetch(url, {
     method,
     body: body && JSON.stringify(body),
@@ -18,7 +26,7 @@ const fetcher = async ({ url, method, body, json = true }) => {
   }
 };
 
-export const register = async (user) => {
+export const register = async (user: string) => {
   return fetcher({
     url: "/api/register",
     method: "POST",
@@ -27,7 +35,7 @@ export const register = async (user) => {
   });
 };
 
-export const signin = async (user) => {
+export const signin = async (user: string) => {
   return fetcher({
     url: "/api/signin",
     method: "POST",
